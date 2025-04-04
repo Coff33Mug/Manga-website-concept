@@ -3,9 +3,9 @@ html * {
 }
 
 body {
-    /* background-color: #21282e; */
+    background-color: #21282e;
     background-color: rgb(60, 92, 120);
-    margin: 50px;
+    margin: 25px;
     padding: 0;
 }
 
@@ -15,7 +15,7 @@ body {
     gap: 10px;
     justify-content: center;
     /* background-color: #191a1c; */
-    width: 90%;
+    width: 100%;
     grid-template-columns: repeat(5, 1fr) 75px 75px;
     grid-template-rows:  auto;
 }
