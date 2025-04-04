@@ -1,0 +1,408 @@
+html * {
+    font-family: Verdana !important;
+}
+
+body {
+    /* background-color: #21282e; */
+    background-color: rgb(60, 92, 120);
+    margin: 50px;
+    padding: 0;
+}
+
+.mainGridWrapper {
+    display: grid;
+    margin: 0 auto;
+    gap: 10px;
+    justify-content: center;
+    /* background-color: #191a1c; */
+    width: 90%;
+    grid-template-columns: repeat(5, 1fr) 75px 75px;
+    grid-template-rows:  auto;
+}
+
+.contentGridWrapper {
+    display: grid;
+    margin-top: 10px;
+    gap: 10px;
+    justify-content: center;
+    /* background-color: rgb(154, 154, 154); */
+    width: 100%;
+    grid-template-columns: repeat(2, 49%);
+    grid-template-rows: auto;
+}
+
+.contentDisplayCard {
+    background-color: #191a1c;
+    display: grid;
+    white-space: wrap;
+    min-height: 170px;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 5px;
+    grid-template-areas: 
+    "img title title"
+    "img stats status"
+    "img tags tags"
+    "img description description";
+    grid-template-columns: 35% 1fr auto;
+    grid-template-rows: auto auto auto 1fr;
+}
+
+.contentName {
+    color: white;
+    grid-area: title;
+    word-break: break-all;
+    white-space: normal;
+    margin-left: 5px;
+    font-size: large;
+}
+
+.contentStats {
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    grid-area: stats;
+    word-break: break-all;
+    white-space: normal;
+    margin-left: 5px;
+    margin-top: 0;
+    font-size: small;
+    height: 30px;
+}
+
+.contentStatus {
+    background-color: rgb(85, 85, 85);
+    padding: 2px 10px 2px 0px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    height: 24px;
+    color: white;
+    font-size:  11px;
+}
+
+.contentDescription {
+    grid-area: description;
+    color: white;
+    font-size: small;
+    word-break: break-all;
+    white-space: normal;
+    margin: 0;
+    margin-left: 5px;
+    padding: 0;
+}
+
+.contentDisplayCard img {
+    left: 5px;
+    top: 5px;
+    border-radius: 10px;
+    grid-area: img;
+    width: 100%;
+    max-height: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.popularElement {
+    background-color: black;
+    overflow: hidden;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 8;
+}
+
+.contentElement {
+    width: 100%;
+    height: fit-content;
+    padding: 10px;
+    background-color: #262626;
+    grid-row-start: 1;
+    grid-row-end: 10;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.contentElement #filterButton {
+    color: white;
+    background-color: #71a7d3;
+    height: 30px;
+    width: 35%;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.contentElement #filterButton:hover{
+    background-color: #618db1;
+}
+
+.filterElement {
+    display: grid;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    margin: 10px 0 10px 0;
+    grid-template-columns: repeat(3, 27%);
+    grid-template-rows: 50px 0px;
+    transition: grid-template-rows .15s ease-in-out;
+    overflow: hidden;
+}
+
+.filterElement label {
+    padding: -5px;
+    color: rgb(140, 140, 140);
+}
+
+/* This animates the closing of it
+.filterElement {
+    grid-template-rows: 0px;
+} */
+
+.filterDropDown {
+    width: 100%;
+    background-color: rgb(106, 106, 106);
+}
+
+.selectElement {
+    border: none;
+    color: white;
+    background-color: rgb(63, 63, 63);
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+    padding-left: 4px;
+    appearance: none;
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+    outline: solid 1px transparent;
+}
+
+.selectElement:focus, .tagsButton:focus {
+    outline-color: #71a7d3;
+}
+
+.tagsButton {
+    text-align: left;
+    border: none;
+    color: white;
+    background-color: rgb(63, 63, 63);
+    border-radius: 5px;
+    width: 100%;
+    height: 30px;
+    padding-left: 4px;
+    cursor: pointer;
+
+    transition: all 0.3s ease-in-out;
+    outline: solid 1px transparent;
+}
+
+
+
+.selectElement option:hover {
+    background-color: rgb(85, 85, 85);
+}
+
+.contentElement .formatButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(63, 63, 63);
+    transition: all 0.2s ease-in-out;
+    width: fit-content;
+    height: 40px;
+    border: none;
+}
+
+.contentElement .formatButton:hover {
+    background-color: rgb(85, 85, 85);
+}
+
+.navigationButtonWrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.navigationButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    transition: all .175s ease-out;
+    width: fit-content;
+    height: 40px;
+    background-color: #71a7d3;
+}
+
+.navigationButton:hover {
+    background-color: #618db1;
+}
+
+.darkNavigationButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    width: fit-content;
+    height: 40px;
+    background-color: transparent;
+    transition: all .175s ease-out;
+}
+
+.darkNavigationButton:hover {
+    background-color: rgb(74, 74, 74);
+}
+
+
+#searchBar {
+    width: 60%;
+    height: 30px;
+    background-color: black;
+    padding-left: 10px;
+    border: none;
+    border-radius: 5px;
+    color:white;
+}
+
+#searchBar::placeholder {
+    color: white;
+}
+
+#searchBar:focus {
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    box-shadow: 0 0 0 .1rem rgba(0, 123, 255, 0.25);
+}
+
+.accountElement {
+    background-color: rgb(79, 79, 79);
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    /* This sizing is for when logged out */
+    /* grid-row-start: 3;
+    grid-row-end: 8;
+    grid-column-start: 6;
+    grid-column-end: 8; */
+
+    /* Thi sizing is for when logged in */
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 6;
+    grid-column-end: 8;
+}
+
+.accountElementSignedIn {
+    background-color: rgb(79, 79, 79);
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+    /* Thi sizing is for when logged in */
+    grid-row-start: 4;
+    grid-row-end: 8;
+    grid-column-start: 6;
+    grid-column-end: 8;
+}
+
+.accountInformation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: white solid;
+    width: 100%;
+    gap: 10px;
+    padding-bottom: 10px;
+}
+
+.accountInformation p {
+    margin: 0;
+}
+
+#accountProfilePicture {
+    width: 70%;
+    border-radius: 50%;
+}
+
+.accountNavigation {
+   display: flex; 
+   flex-direction: column;
+}
+
+.accountNavigation a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    height: 30px;
+    border-radius: 7px;
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+}
+
+.popularItemContainer {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.popularItemContainer img {
+    height: 90%;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+/* orignally 1020px */
+@media (max-width: 1020px) {
+    .mainGridWrapper {
+        grid-template-columns: repeat(5, minmax(40px, 1fr));
+    }
+
+    .accountElement {
+        display: none;
+    }
+
+    .accountElementSignedIn {
+        display: none;
+    }
+
+    .contentElement {
+        grid-column-start: 1;
+        grid-column-end: 8;
+    }
+
+    .filterElement {
+        grid-template-columns: repeat(2, 45%);
+        grid-template-rows: 55px 55px;
+        transition: none;
+        row-gap: 15px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .contentGridWrapper {
+        grid-template-columns: 100%;
+        grid-template-rows:  200px;
+    }
+
+    .contentDisplayCard {
+        width: 100%;
+    }
+
+    .filterElement {
+        grid-template-columns: repeat(1, 100%);
+        grid-template-rows: 55px 55px 55px;
+        transition: none;
+        row-gap: 15px;
+    }
+
+    /* Force the format to be single */
+}
