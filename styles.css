@@ -146,7 +146,18 @@ body {
     box-sizing: border-box;
     margin: 10px 0 10px 0;
     grid-template-columns: repeat(3, 27%);
-    grid-template-rows: 50px 0px;
+    grid-template-rows: 50px;
+    transition: grid-template-rows .15s ease-in-out;
+    overflow: hidden;
+}
+
+.filterElementHidden{
+    display: grid;
+    justify-content: space-evenly;
+    box-sizing: border-box;
+    margin: 10px 0 10px 0;
+    grid-template-columns: repeat(3, 27%);
+    grid-template-rows: 0px 0px 0px;
     transition: grid-template-rows .15s ease-in-out;
     overflow: hidden;
 }
