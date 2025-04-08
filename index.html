@@ -19,6 +19,15 @@
             <div style="display: flex; flex-wrap: nowrap; gap: 5px;">
                 <input id="searchBar" type="text" placeholder="Search..." autocomplete="off">
                 <button id="filterButton">Filter</button>
+                <button id="accountProfilePictureButton">
+                    <img src="cat.png" id="accountProfileAvatar">
+                </button>
+            </div>
+
+            <div class="accountElementDropDown hidden" id="accountElementDropDown">
+                <a href="" class="navigationButton">Profile</a>
+                <a href="" class="darkNavigationButton">Followed</a>
+                <a href="" class="darkNavigationButton">My Lists</a>
             </div>
 
             <div class="filterElement hidden" id="filterElement">
@@ -47,8 +56,6 @@
                         <option value="mostPopular">Most Popular</option>
                     </select>
                 </div>
-
-                
             </div>
             
             <div style="display: flex; margin-top: 10px;">
@@ -192,7 +199,7 @@
             
         </div>
         
-        <div class="accountElement">
+        <div class="accountElementSideBar">
             <div class="accountInformation">
                 <img id="accountProfilePicture" src="cat.png">
                 <p style="color: white;">Guest</p>
