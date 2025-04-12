@@ -35,11 +35,20 @@ button {
     grid-template-rows: auto;
 }
 
+.contentGridWrapper.dense {
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+}
+
+.contentGridWrapper.compact {
+    grid-template-columns: repeat(4, 24%);
+    gap: 6px;
+}
+
 .contentDisplayCard {
     background-color: #191a1c;
     display: grid;
     white-space: wrap;
-    min-height: 170px;
     box-sizing: border-box;
     padding: 5px;
     border-radius: 5px;
@@ -48,15 +57,65 @@ button {
     "img stats status"
     "img tags tags"
     "img description description";
-    grid-template-columns: 35% 1fr auto;
+    grid-template-columns: min(215px, 35%) 1fr auto;
     grid-template-rows: auto auto auto 1fr;
+}
+
+.contentDisplayCard.dense {
+    grid-template-areas:        
+    "img title stats status"
+    "img tags tags tags"
+    "img description description description";
+    grid-template-columns: 100px auto 1fr auto auto;
+    grid-template-rows: auto auto 1fr;
+    min-height: unset;
+}
+
+.contentDisplayCard.compact {
+    /* grid-template-areas:        
+    "img img img"
+    "img img img"
+    "title title stats"; */
+    display: block;
+    position: relative;
+    height: unset;
+    padding: 0;
+    background-color: transparent;
+}
+
+.contentDisplayCard.compact .contentDescription,
+.contentDisplayCard.compact .contentStatus {
+    display: none;
+}
+
+.contentDisplayCard.compact .contentName {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 80%;
+    padding: 8px;
+    text-wrap: wrap;
+    white-space: normal;
+    overflow-wrap: break-word;
+    font-size: small;
+}
+
+.contentDisplayCard.compact .contentStats {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 .contentName {
     color: white;
+    /* Centering text */
+    margin-top: auto;
+    margin-bottom: auto;
+
     grid-area: title;
-    word-break: break-all;
-    white-space: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     margin-left: 5px;
     font-size: large;
 }
@@ -67,9 +126,8 @@ button {
     align-items: center;
     grid-area: stats;
     word-break: break-all;
-    white-space: normal;
+    white-space: nowrap;
     margin-left: 5px;
-    margin-top: 0;
     font-size: small;
     height: 30px;
 }
@@ -330,6 +388,18 @@ button {
     overflow: hidden;
 }
 
+.accountElementDropDown a {
+    border: none;
+    color: white;
+    border-radius: 5px;
+    width: 99%;
+    height: 30px;
+    padding-left: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    outline: solid 1px transparent;
+}
+
 .accountElementDropDown.hidden {
     grid-template-rows: 0px; 
 }
@@ -368,32 +438,6 @@ button {
 .accountNavigation {
    display: flex; 
    flex-direction: column;
-}
-
-.accountElementDropDown {
-    display: grid;
-    justify-content: space-evenly;
-    box-sizing: border-box;
-    width: 100%;
-    grid-template-columns: repeat(3, 27%);
-    grid-template-rows: 30px;
-    transition: grid-template-rows .15s ease-in-out;
-    overflow: hidden;
-}
-
-.accountElementDropDown a {
-    border: none;
-    color: white;
-    background-color: rgb(63, 63, 63);
-    border-radius: 5px;
-    width: 100%;
-    height: 30px;
-    padding-left: 4px;
-    text-decoration: none;
-    cursor: pointer;
-
-    transition: all 0.3s ease-in-out;
-    outline: solid 1px transparent;
 }
 
 .accountNavigation a {
@@ -444,24 +488,24 @@ button {
 
     .filterElement {
         grid-template-columns: repeat(2, 45%);
-        grid-template-rows: 55px 55px;
+        grid-template-rows: repeat(2, 55px);;
         row-gap: 15px;
     }
 
     .filterElement.hidden{
-        grid-template-rows: 0px 0px;
+        grid-template-rows: repeat(2, 0px);;
         gap: 0px;
         row-gap: 0px;
     }
 
     .accountElementDropDown {
         grid-template-columns: repeat(2, 45%);
-        grid-template-rows: 30px 30px;
+        grid-template-rows: repeat(2, 30px);;
         row-gap: 15px;
     }
 
     .accountElementDropDown.hidden{
-        grid-template-rows: 0px 0px;
+        grid-template-rows: repeat(2, 0px);;
         gap: 0px;
         row-gap: 0px;
     }
@@ -479,7 +523,11 @@ button {
 @media (max-width: 600px) {
     .contentGridWrapper {
         grid-template-columns: 100%;
-        grid-template-rows:  200px;
+        grid-auto-rows: 180px;
+    }
+
+    .contentGridWrapper.dense {
+        grid-auto-rows: auto;
     }
 
     .contentDisplayCard {
@@ -488,22 +536,22 @@ button {
 
     .filterElement {
         grid-template-columns: repeat(1, 99%);
-        grid-template-rows: 55px 55px 55px;
+        grid-template-rows: repeat(3, 55px);;
         row-gap: 15px;
     }
 
     .filterElement.hidden{
-        grid-template-rows: 0px 0px 0px;
+        grid-template-rows: repeat(3, 0px);;
     }
 
     .accountElementDropDown {
         grid-template-columns: repeat(1, 99%);
-        grid-template-rows: 30px 30px 30px;
+        grid-template-rows: repeat(3, 30px);;
         row-gap: 15px;
     }
 
     .accountElementDropDown.hidden{
-        grid-template-rows: 0px 0px 0px;
+        grid-template-rows: repeat(3, 0px);
     }
 
     #accountProfilePictureButton {
