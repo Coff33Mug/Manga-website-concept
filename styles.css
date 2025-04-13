@@ -41,7 +41,7 @@ button {
 }
 
 .contentGridWrapper.compact {
-    grid-template-columns: repeat(4, 24%);
+    grid-template-columns: repeat(5, 19%);
     gap: 6px;
 }
 
@@ -97,7 +97,7 @@ button {
     text-wrap: wrap;
     white-space: normal;
     overflow-wrap: break-word;
-    font-size: small;
+    font-size: calc(.8vw + .8vh);
 }
 
 .contentDisplayCard.compact .contentStats {
@@ -146,7 +146,7 @@ button {
 .contentDescription {
     grid-area: description;
     color: white;
-    font-size: small;
+    font-size: .70rem;
     word-break: break-all;
     white-space: normal;
     margin: 0;
@@ -523,10 +523,20 @@ button {
 @media (max-width: 600px) {
     .contentGridWrapper {
         grid-template-columns: 100%;
-        grid-auto-rows: 180px;
+        grid-template-rows: 150px;
+        grid-auto-rows: 150px;
     }
 
+    /* Two below prevent default styles to make 
+    certain rows too big. */
     .contentGridWrapper.dense {
+        grid-template-rows: auto;
+        grid-auto-rows: auto;
+    }
+
+    .contentGridWrapper.compact {
+        grid-template-columns: repeat(4, 24%);
+        grid-template-rows: auto;
         grid-auto-rows: auto;
     }
 
@@ -559,4 +569,14 @@ button {
     }
 
     /* Force the format to be single */
+}
+
+@media (max-width: 355px) {
+    .contentGridWrapper.compact {
+        grid-template-columns: repeat(3, 33%);
+    }
+
+    .contentGridWrapper.dense .contentStatus {
+        display: none;
+    }
 }
