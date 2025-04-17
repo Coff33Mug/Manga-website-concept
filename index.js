@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const defaultFormatButton = document.getElementById("defaultFormatButton");
     const compactFormatButton = document.getElementById("compactFormatButton");
 
+    // Drop down elements for filters and profile
     document.getElementById("filterButton").addEventListener('click', () => {
         // Hidden state -> unhidden
         filterElement.classList.toggle("hidden");
@@ -18,8 +19,11 @@ document.addEventListener("DOMContentLoaded", () => {
         accountElementDropDown.classList.toggle("hidden");
     });
 
+    // Events for format buttons
     denseFormatButton.addEventListener('click', () => {
-        console.log("Dense button pressed");
+        
+        // Cards are formatted to dense
+
         for (let i = 0; i < cardContainerChildren.length; i++) {
             const card = cardContainerChildren[i];
             // If the cards are already in compact format, remove it.
@@ -30,6 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
             card.classList.add("dense");
             cardContainer.classList.add("dense");
         }
+
+        // Sets dense to active
+        denseFormatButton.classList.add("active");
+        defaultFormatButton.classList.remove("active");
+        compactFormatButton.classList.remove("active");
     });
 
     defaultFormatButton.addEventListener('click', () => {
@@ -48,6 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
             card.classList.remove("dense");
             cardContainer.classList.remove("dense");
         }
+
+        // Sets default to active
+        defaultFormatButton.classList.add("active");
+        denseFormatButton.classList.remove("active");
+        compactFormatButton.classList.remove("active");
     });
 
     compactFormatButton.addEventListener('click', () => {
@@ -62,5 +76,10 @@ document.addEventListener("DOMContentLoaded", () => {
             card.classList.add("compact");
             cardContainer.classList.add("compact");
         }
+
+        // Sets compact to active
+        compactFormatButton.classList.add("active");
+        denseFormatButton.classList.remove("active");
+        defaultFormatButton.classList.remove("active");
     });
 });

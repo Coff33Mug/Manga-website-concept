@@ -41,8 +41,8 @@ button {
 }
 
 .contentGridWrapper.compact {
-    grid-template-columns: repeat(5, 19%);
-    gap: 6px;
+    grid-template-columns: repeat(6, 15%);
+    gap: 15px;
 }
 
 .contentDisplayCard {
@@ -301,8 +301,6 @@ button {
     outline: solid 1px transparent;
 }
 
-
-
 .selectElement option:hover {
     background-color: rgb(85, 85, 85);
 }
@@ -316,6 +314,10 @@ button {
     width: fit-content;
     height: 40px;
     border: none;
+}
+
+.contentElement .formatButton.active {
+    background-color: rgb(85, 85, 85);
 }
 
 .contentElement .formatButton:hover {
@@ -517,8 +519,22 @@ button {
     #accountProfilePictureButton {
         display: flex;
     }
+
+    .contentGridWrapper.compact {
+        grid-template-columns: repeat(5, 19%);
+        grid-template-rows: auto;
+        grid-auto-rows: auto;
+        gap: 6px;
+    }
 }
 
+@media (max-width: 800px) {
+    .contentGridWrapper.compact {
+        grid-template-columns: repeat(4, 24%);
+        grid-template-rows: auto;
+        grid-auto-rows: auto;
+    }
+}
 
 @media (max-width: 600px) {
     .contentGridWrapper {
@@ -535,7 +551,7 @@ button {
     }
 
     .contentGridWrapper.compact {
-        grid-template-columns: repeat(4, 24%);
+        grid-template-columns: repeat(3, 32%);
         grid-template-rows: auto;
         grid-auto-rows: auto;
     }
@@ -571,9 +587,9 @@ button {
     /* Force the format to be single */
 }
 
-@media (max-width: 355px) {
+@media (max-width: 450px) {
     .contentGridWrapper.compact {
-        grid-template-columns: repeat(3, 33%);
+        grid-template-columns: repeat(2, 49%);
     }
 
     .contentGridWrapper.dense .contentStatus {
