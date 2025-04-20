@@ -247,6 +247,7 @@ button {
     z-index: 2;
     pointer-events: auto;
     top: 115px;
+    border: #618db1 1px solid;
     border-radius: 5px;
 
     padding: 10px;
@@ -256,6 +257,12 @@ button {
     opacity: 0;
     animation: fadeOut .15s linear;
     pointer-events: none;
+}
+
+.tagFilterContainer.initialHidden {
+    opacity: 0;
+    pointer-events: none;
+    animation: none;
 }
 
 #closeTagFilterContainerButton {
@@ -667,6 +674,7 @@ button {
 
     .tagFilterContainer {
         width: 100%;
+        border: none;
         border-radius: 0px;
         left: 0;
         top: 0;

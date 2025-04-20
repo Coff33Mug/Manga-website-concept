@@ -26,15 +26,28 @@ document.addEventListener("DOMContentLoaded", () => {
         // Stop propogation to prevent parent event listener (event window)
         // below from activating, preventing the opening of filters
         event.stopPropagation();
+        // Initial hidden keeps the fade out animation from happening 
+        // when the page loads in.
+        tagFilterContainer.classList.remove("initialHidden");
         tagFilterContainer.classList.toggle("hidden");
     });
 
+    // Prevents filter element from closing when clicking inside of it.
+    tagFilterContainer.addEventListener('click', (event) => {
+        event.stopPropagation();
+    });
+
+    // Hides filter element if you click off it.
     window.addEventListener('click', () => {
         if (!tagFilterContainer.classList.contains("hidden")) {
             tagFilterContainer.classList.add("hidden");
         }
     });
 
+    setTimeout(() => {
+        tagFilterContainer.classList.remove("noanimation");
+    }, 150);
+    
     document.getElementById("accountProfilePictureButton").addEventListener('click', () => {
         // Hidden state -> unhidden
         accountElementDropDown.classList.toggle("hidden");
@@ -108,3 +121,4 @@ document.addEventListener("DOMContentLoaded", () => {
         tagFilterContainer.classList.add("hidden");
     });
 });
+
