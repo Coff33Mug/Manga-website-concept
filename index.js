@@ -7,11 +7,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const denseFormatButton = document.getElementById("denseFormatButton");
     const defaultFormatButton = document.getElementById("defaultFormatButton");
     const compactFormatButton = document.getElementById("compactFormatButton");
+    const tagsButton = document.getElementById("tagsButton");
+    const tagFilterContainer = document.getElementById("tagFilterContainer");
 
     // Drop down elements for filters and profile
     document.getElementById("filterButton").addEventListener('click', () => {
         // Hidden state -> unhidden
         filterElement.classList.toggle("hidden");
+
+        // Closes filter popup if it's open when you press the filter button
+        if (!tagFilterContainer.classList.contains("hidden")) {
+            tagFilterContainer.classList.add("hidden");
+        }
+    });
+
+    // Toggle for tags window
+    tagsButton.addEventListener('click', (event) => {
+        // Stop propogation to prevent parent event listener (event window)
+        // below from activating, preventing the opening of filters
+        event.stopPropagation();
+        tagFilterContainer.classList.toggle("hidden");
+    });
+
+    window.addEventListener('click', () => {
+        if (!tagFilterContainer.classList.contains("hidden")) {
+            tagFilterContainer.classList.add("hidden");
+        }
     });
 
     document.getElementById("accountProfilePictureButton").addEventListener('click', () => {
@@ -81,5 +102,9 @@ document.addEventListener("DOMContentLoaded", () => {
         compactFormatButton.classList.add("active");
         denseFormatButton.classList.remove("active");
         defaultFormatButton.classList.remove("active");
+    });
+
+    document.getElementById("closeTagFilterContainerButton").addEventListener('click', () => {
+        tagFilterContainer.classList.add("hidden");
     });
 });
