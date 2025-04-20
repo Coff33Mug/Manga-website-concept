@@ -15,8 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
         when the page loads in. 
     */
     document.getElementById("filterButton").addEventListener('click', () => {
+        // Hidden state -> unhidden
         filterElement.classList.toggle("hidden");
-        tagFilterContainer.classList.remove("initialHidden");
+
         // Closes filter popup if it's open when you press the filter button
         if (!tagFilterContainer.classList.contains("hidden")) {
             tagFilterContainer.classList.add("hidden");
@@ -28,7 +29,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Stop propogation to prevent parent event listener (event window)
         // below from activating, preventing the opening of filters
         event.stopPropagation();
-        
+        // Initial hidden keeps the fade out animation from happening 
+        // when the page loads in.
+        tagFilterContainer.classList.remove("initialHidden");
         tagFilterContainer.classList.toggle("hidden");
     });
 

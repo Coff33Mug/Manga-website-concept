@@ -242,7 +242,7 @@ button {
     position: absolute;
     background-color: rgb(63, 63, 63);
     height: 400px;
-    width: 360px;
+    width: 475px;
     animation: fadeIn .15s linear;
     z-index: 2;
     pointer-events: auto;
@@ -550,6 +550,7 @@ button {
         grid-column-end: 8;
     }
 
+    /* Grid Wrapper for filtering buttons and selects */
     .filterElement {
         grid-template-columns: repeat(2, 45%);
         grid-template-rows: repeat(2, 55px);;
@@ -571,6 +572,8 @@ button {
     .tagFilterContainer {
         top: 115px;
         right: 5%;
+        height: 400px;
+        width: 360px;
     }
 
     .accountElementDropDown.hidden{
