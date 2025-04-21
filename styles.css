@@ -7,15 +7,20 @@ body {
     background-color: rgb(60, 92, 120);
     margin: 25px;
     padding: 0;
+    overflow: overlay;
+}
+
+/* ::-webkit-scrollbar {
+
 }
 
 ::-webkit-scrollbar-track {
-    background-color: transparent;
+    background: rgb(152, 9, 9);
 }
 
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-}
+} */
 
 button {
     cursor: pointer;
@@ -266,7 +271,19 @@ button {
 }
 
 #closeTagFilterContainerButton {
+    width: 40px;
+    height: 40px;
+    /* margin-right: 20px; */
+    background-color: transparent; 
+    padding: 0;
+    border: none;
+    cursor: pointer;
     display: none;
+}
+
+#closeTagFilterContainerButton:hover {
+    background-color: rgb(70, 70, 70);
+    border-radius: 50%;
 }
 
 @keyframes fadeIn {
