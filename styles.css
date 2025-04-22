@@ -5,25 +5,32 @@ html * {
 body {
     background-color: #21282e;
     background-color: rgb(60, 92, 120);
+    background-color: rgb(40, 60, 80);
     margin: 25px;
     padding: 0;
     overflow: overlay;
 }
 
-/* ::-webkit-scrollbar {
-
+::-webkit-scrollbar {
+    width: 12px;
 }
 
 ::-webkit-scrollbar-track {
-    background: rgb(152, 9, 9);
+    background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-color: rgb(77, 77, 77);
     border-radius: 10px;
-} */
+}
 
 button {
     cursor: pointer;
+}
+
+.generalSpace {
+    height: 10px;
 }
 
 .mainGridWrapper {
@@ -132,7 +139,7 @@ button {
     white-space: nowrap;
     overflow: hidden;
     margin-left: 5px;
-    font-size: large;
+    font-size: 1.125rem;
 }
 
 .contentStats {
@@ -143,7 +150,7 @@ button {
     word-break: break-all;
     white-space: nowrap;
     margin-left: 5px;
-    font-size: small;
+    font-size: .8125rem;
     height: 30px;
 }
 
@@ -155,7 +162,7 @@ button {
     align-items: center;
     height: 24px;
     color: white;
-    font-size:  11px;
+    font-size: .69rem;
 }
 
 .contentDescription {
@@ -247,15 +254,17 @@ button {
     position: absolute;
     background-color: rgb(63, 63, 63);
     height: 400px;
-    width: 475px;
+    width: 600px;
+    top: 115px;
+    padding: 15px;
+    border: #618db1 1px solid;
+    border-radius: 5px;
+    box-sizing: border-box;
+
     animation: fadeIn .15s linear;
     z-index: 2;
     pointer-events: auto;
-    top: 115px;
-    border: #618db1 1px solid;
-    border-radius: 5px;
-
-    padding: 10px;
+    overflow-y: scroll;
 }
 
 .tagFilterContainer.hidden {
@@ -273,7 +282,7 @@ button {
 #closeTagFilterContainerButton {
     width: 40px;
     height: 40px;
-    /* margin-right: 20px; */
+    margin-right: -8px;
     background-color: transparent; 
     padding: 0;
     border: none;
@@ -284,6 +293,33 @@ button {
 #closeTagFilterContainerButton:hover {
     background-color: rgb(70, 70, 70);
     border-radius: 50%;
+}
+
+.generalTagsContainer, .contentTagsContainer, .languageTagsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.tagFilterContainer ul {
+    list-style-type: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.tagFilterContainer li {
+    transition-duration: .15s;
+    transition-property: opacity, color, border-color;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+    background-color: rgb(46, 46, 46);
+    color: white;
+
+    padding: 5px;
+    border-radius: .375rem;
+    font-size: .75rem;
+    width: fit-content;
 }
 
 @keyframes fadeIn {
@@ -532,7 +568,7 @@ button {
     margin-top: 10px;
     text-decoration: none;
     color: white;
-    font-size: 14px;
+    font-size: .875rem;
 }
 
 .popularItemContainer {
