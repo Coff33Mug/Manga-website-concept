@@ -7,8 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const denseFormatButton = document.getElementById("denseFormatButton");
     const defaultFormatButton = document.getElementById("defaultFormatButton");
     const compactFormatButton = document.getElementById("compactFormatButton");
+    // Tag searching elements
     const tagsButton = document.getElementById("tagsButton");
     const tagFilterContainer = document.getElementById("tagFilterContainer");
+    const generalTagsContainer = document.getElementById("generalTagsContainer");
+    const contentTagsContainer = document.getElementById("contentTagsContainer");
+    const languageTagsContainer = document.getElementById("languageTagsContainer");
 
     /*  Drop down elements for filters and profile
         Initial hidden keeps the fade out animation from happening 
@@ -123,5 +127,44 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("closeTagFilterContainerButton").addEventListener('click', () => {
         tagFilterContainer.classList.add("hidden");
     });
+
+    // Event listeners for including and excluding tags
+    function addTagEventListener(parentElement) {
+        const children = parentElement.children;
+        for (let i = 0; i < children.length; i++) {
+            const child = children[i];
+            child.addEventListener('click', () => {
+                // Neutral set to include
+                if (child.classList.contains("neutral")) {
+                    child.dataset.state = "include";
+                    child.classList.remove("neutral");
+                    child.classList.add("include");
+                    console.log("neutral");
+                } 
+                
+                // Include set to exclude
+                else if (child.classList.contains("include")) {
+                    child.dataset.state = "exclude";
+                    child.classList.remove("include");
+                    child.classList.add("exclude");
+                    console.log("include");
+                } 
+
+                 // Exclude set to neutral
+                else if (child.classList.contains("exclude")) {
+                    child.dataset.state = "neutral";
+                    child.classList.remove("exclude");
+                    child.classList.add("neutral");
+                    console.log("exclude");
+                }
+
+                
+            });
+        }
+    }
+
+    addTagEventListener(generalTagsContainer);
+    addTagEventListener(contentTagsContainer);
+    addTagEventListener(languageTagsContainer);
 });
 
