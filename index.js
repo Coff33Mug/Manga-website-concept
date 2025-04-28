@@ -37,6 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // when the page loads in.
         tagFilterContainer.classList.remove("initialHidden");
         tagFilterContainer.classList.toggle("hidden");
+        preventBodyScroll();
     });
 
     // Prevents filter element from closing when clicking inside of it.
@@ -54,6 +55,20 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(() => {
         tagFilterContainer.classList.remove("noanimation");
     }, 150);
+
+    // Window event listener that checks that if the screen is too small and
+    // tag filter container is open -> prevent scrolling
+    window.addEventListener('resize', preventBodyScroll);
+
+    function preventBodyScroll() {
+        const windowSize = window.innerWidth; 
+        if (windowSize < 465 &&
+            !(tagFilterContainer.classList.contains("hidden") || tagFilterContainer.classList.contains("initialHidden"))) {
+            document.body.style.overflow = "hidden"
+        } else {
+            document.body.style.overflow = ""
+        }
+    }
     
     document.getElementById("accountProfilePictureButton").addEventListener('click', () => {
         // Hidden state -> unhidden
@@ -126,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("closeTagFilterContainerButton").addEventListener('click', () => {
         tagFilterContainer.classList.add("hidden");
+        preventBodyScroll();
     });
 
     // Event listeners for including and excluding tags
@@ -158,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.log("exclude");
                 }
 
-                
+
             });
         }
     }
