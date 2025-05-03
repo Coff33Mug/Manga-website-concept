@@ -170,8 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     // Updating data
                     includedTags.push(tagName);
-                    console.log(includedTags);
-                    console.log(excludedTags);
+                    
                 } 
                 
                 // Include set to exclude
@@ -183,8 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     // Updating data
                     includedTags = removeElement(includedTags, tagName);
                     excludedTags.push(tagName);
-                    console.log(includedTags);
-                    console.log(excludedTags);
+                    
                 } 
 
                  // Exclude set to neutral
@@ -195,8 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     
                     // Updating data
                     excludedTags = removeElement(excludedTags, tagName);
-                    console.log(includedTags);
-                    console.log(excludedTags);
+                    
                 }
 
                 updateTagsButtonText(); 
@@ -213,17 +210,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateTagsButtonText() {
         if (includedTags.length > 0 && excludedTags.length > 0) {
             tagsButtonText.textContent = `Include ${includedTags.join(", ")} and Exclude ${excludedTags.join(", ")}`;
-            updateResetFilterButtons();
         } else if (includedTags.length > 0) {
             tagsButtonText.textContent = `Include ${includedTags.join(", ")}`;
-            updateResetFilterButtons();
         } else if (excludedTags.length > 0) {
             tagsButtonText.textContent = `Exclude ${excludedTags.join(", ")}`;
-            updateResetFilterButtons();
         } else {
             tagsButtonText.textContent = "None";
-            updateResetFilterButtons();
         }
+
+        updateResetFilterButtons();
     }
 
     // Event listeners for select 
@@ -252,16 +247,24 @@ document.addEventListener("DOMContentLoaded", () => {
         return array.filter(tag => tag !== element);
     }
 
-    // Disables or enables all filter reset buttons
+    // Disables or enables all filter reset buttons by checking filters
     function updateResetFilterButtons() {
         if (selectFilters.length == 0 && includedTags.length == 0 && excludedTags.length == 0) {
-            for (let i = 0; i < resetFiltersButtons.length; i++) {
-                resetFiltersButtons[i].classList.add("disabled");
-            }
+            disableResetFilterButtons();
         } else {
-            for (let i = 0; i < resetFiltersButtons.length; i++) {
-                resetFiltersButtons[i].classList.remove("disabled");
-            }
+            enableResetFilterButtons();
+        }
+    }
+
+    function disableResetFilterButtons() {
+        for (let i = 0; i < resetFiltersButtons.length; i++) {
+            resetFiltersButtons[i].classList.add("disabled");
+        }
+    }
+
+    function enableResetFilterButtons() {
+        for (let i = 0; i < resetFiltersButtons.length; i++) {
+            resetFiltersButtons[i].classList.remove("disabled");
         }
     }
 
@@ -283,9 +286,9 @@ document.addEventListener("DOMContentLoaded", () => {
         for (let i = 0; i < selectElements.length; i++) {
             selectElements[i].selectedIndex = 0;
         }
+
+        selectFilters = [];
     }
-
-
 
     // Event listeners for reset filter buttons
     for (let i = 0; i < resetFiltersButtons.length; i++) {
@@ -295,6 +298,7 @@ document.addEventListener("DOMContentLoaded", () => {
             disableTagsInContainer(languageTagsContainer);
             updateTagsButtonText();
             resetSelectElements();
+            disableResetFilterButtons();
         });
     }
 
