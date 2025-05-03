@@ -68,7 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Window event listener that checks that if the screen is too small and
     // tag filter container is open -> prevent scrolling
-    window.addEventListener('resize', preventBodyScroll);
+    window.addEventListener('resize', () => {
+        preventBodyScroll();
+        handleContentTagResize();
+    });
 
     function preventBodyScroll() {
         const windowSize = window.innerWidth; 
@@ -317,6 +320,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Every time the webpage is resized, checked if the more button is needed.
+    // Bug: more button wouldn't show up if  you made the page smaller. 
+    // But now it won't disappear if the page gets big enough to show the tags
+    function handleContentTagResize() {
+        for (let i = 0; i < contentTags.length; i++) {
+            const contentTag = contentTags[i];
+
+            if (contentTag.scrollHeight > contentTag.clientHeight) {
+                contentTag.classList.add("overflow-y-hidden");
+            }
+        }
+    }
 
 });
 
