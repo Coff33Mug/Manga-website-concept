@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const denseFormatButton = document.getElementById("denseFormatButton");
     const defaultFormatButton = document.getElementById("defaultFormatButton");
     const compactFormatButton = document.getElementById("compactFormatButton");
+    // Filter select elements
+    const selectElements = document.getElementsByClassName("selectElement");
+    let selectFilters = [];
     // Tag searching elements
     const tagsButton = document.getElementById("tagsButton");
     const tagsButtonText = document.getElementById("tagsButtonText");
@@ -17,6 +20,8 @@ document.addEventListener("DOMContentLoaded", () => {
     let includedTags = [];
     let excludedTags = [];
     const resetFiltersButtons = document.getElementsByClassName("resetFiltersButton");
+    // Card tag elements
+    const contentTags = document.getElementsByClassName("contentTags");
 
 
     /*  Drop down elements for filters and profile
@@ -208,17 +213,38 @@ document.addEventListener("DOMContentLoaded", () => {
     function updateTagsButtonText() {
         if (includedTags.length > 0 && excludedTags.length > 0) {
             tagsButtonText.textContent = `Include ${includedTags.join(", ")} and Exclude ${excludedTags.join(", ")}`;
-            enableResetFilterButtons();
+            updateResetFilterButtons();
         } else if (includedTags.length > 0) {
             tagsButtonText.textContent = `Include ${includedTags.join(", ")}`;
-            enableResetFilterButtons();
+            updateResetFilterButtons();
         } else if (excludedTags.length > 0) {
             tagsButtonText.textContent = `Exclude ${excludedTags.join(", ")}`;
-            enableResetFilterButtons();
+            updateResetFilterButtons();
         } else {
             tagsButtonText.textContent = "None";
-            disableResetFilterButtons();
+            updateResetFilterButtons();
         }
+    }
+
+    // Event listeners for select 
+    // On change, add or remove filters selected.
+    for (let i = 0; i < selectElements.length; i++) {
+        const selectElement = selectElements[i];
+        let prevFilters = new Array(selectElements.length).fill(null);
+        
+        selectElement.addEventListener('change', () => {
+            let prevFilter = prevFilters[i];
+            if (prevFilter != null) {
+                selectFilters = removeElement(selectFilters, prevFilter);
+            }
+
+            if (selectElement.selectedIndex != 0) {
+                selectFilters.push(selectElement.value);
+                prevFilters[i] = selectElement.value;
+            }
+
+            updateResetFilterButtons();
+        });
     }
 
     // Function in the name. Used in tag event listeners.
@@ -226,16 +252,16 @@ document.addEventListener("DOMContentLoaded", () => {
         return array.filter(tag => tag !== element);
     }
 
-    // Disables all filter reset buttons
-    function disableResetFilterButtons() {
-        for (let i = 0; i < resetFiltersButtons.length; i++) {
-            resetFiltersButtons[i].classList.add("disabled");
-        }
-    }
-
-    function enableResetFilterButtons() {
-        for (let i = 0; i < resetFiltersButtons.length; i++) {
-            resetFiltersButtons[i].classList.remove("disabled");
+    // Disables or enables all filter reset buttons
+    function updateResetFilterButtons() {
+        if (selectFilters.length == 0 && includedTags.length == 0 && excludedTags.length == 0) {
+            for (let i = 0; i < resetFiltersButtons.length; i++) {
+                resetFiltersButtons[i].classList.add("disabled");
+            }
+        } else {
+            for (let i = 0; i < resetFiltersButtons.length; i++) {
+                resetFiltersButtons[i].classList.remove("disabled");
+            }
         }
     }
 
@@ -253,6 +279,14 @@ document.addEventListener("DOMContentLoaded", () => {
         excludedTags = [];
     }
 
+    function resetSelectElements() {
+        for (let i = 0; i < selectElements.length; i++) {
+            selectElements[i].selectedIndex = 0;
+        }
+    }
+
+
+
     // Event listeners for reset filter buttons
     for (let i = 0; i < resetFiltersButtons.length; i++) {
         resetFiltersButtons[i].addEventListener('click', () => {
@@ -260,6 +294,22 @@ document.addEventListener("DOMContentLoaded", () => {
             disableTagsInContainer(contentTagsContainer);
             disableTagsInContainer(languageTagsContainer);
             updateTagsButtonText();
+            resetSelectElements();
+        });
+    }
+
+    // Adds More button to contentTags that have more tags that can be shown.
+    for (let i = 0; i < contentTags.length; i++) {
+        const contentTag = contentTags[i];
+
+        if (contentTag.scrollHeight > contentTag.clientHeight) {
+            contentTag.classList.add("overflow-y-hidden");
+        }
+
+        contentTag.addEventListener('click', () => {
+            contentTag.classList.remove("overflow-y-hidden");
+            contentTag.style.maxHeight = "unset";
+            contentTag.style.cursor = "auto";
         });
     }
 
