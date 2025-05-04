@@ -169,12 +169,27 @@ button {
 .contentDescription {
     grid-area: description;
     color: white;
+    position: relative;
     font-size: .70rem;
     word-break: break-all;
     white-space: normal;
+    overflow: hidden;
     margin: 0;
     margin-left: 5px;
     padding: 0;
+    max-height: 7em;
+}
+
+.contentDescription::after {
+    background: linear-gradient(rgba(255, 255, 255, 0), rgb(25, 26, 28));
+    /* background-color: white; */
+    bottom: 0;
+    content: "";
+    display: block;
+    height: .9em;
+    left: 0;
+    position: absolute;
+    width: 100%
 }
 
 .contentDisplayCard img {
